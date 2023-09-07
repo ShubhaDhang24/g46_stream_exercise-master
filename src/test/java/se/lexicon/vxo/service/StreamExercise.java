@@ -66,8 +66,9 @@ public class StreamExercise {
     public void task4(){
         int expectedSize = 4988;
         List<Person> females = null;
-
-        //TODO:Write code here
+        females=people.stream()
+                        .filter(person -> person.getGender().equals(Gender.FEMALE))
+                                .toList();
 
 
         assertNotNull(females);
