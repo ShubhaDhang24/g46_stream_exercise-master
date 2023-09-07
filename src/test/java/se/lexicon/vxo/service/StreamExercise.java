@@ -165,9 +165,6 @@ public class StreamExercise {
                         person.getDateOfBirth().getMonth().toString() + " " +
                         person.getDateOfBirth().getYear());
 
-
-        //TODO:Write code here
-
         assertNotNull(optional);
         assertTrue(optional.isPresent());
         assertEquals(expected, optional.get());
@@ -212,8 +209,9 @@ public class StreamExercise {
     public void task13() {
         int expectedSize = 107;
         Map<String, List<Person>> personMap = null;
+        personMap=people.stream().collect(Collectors.groupingBy(Person::getLastName));
 
-        //TODO:Write code here
+
 
         assertNotNull(personMap);
         assertEquals(expectedSize, personMap.size());
