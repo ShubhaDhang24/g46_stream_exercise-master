@@ -129,7 +129,7 @@ public class StreamExercise {
     public void task8() {
         LocalDate expectedBirthDate = LocalDate.parse("1910-01-02");
         Optional<Person> optional = null;
-        optional=people.stream().min(Comparator.comparing(Person::getDateOfBirth));
+        optional = people.stream().min(Comparator.comparing(Person::getDateOfBirth));
         assertNotNull(optional);
         assertEquals(expectedBirthDate, optional.get().getDateOfBirth());
     }
@@ -143,8 +143,8 @@ public class StreamExercise {
         LocalDate date = LocalDate.parse("1920-01-01");
 
         List<PersonDto> dtoList = null;
-        dtoList=people.stream().filter(person -> person.getDateOfBirth().isBefore(date))
-                .map(person -> new PersonDto(person.getPersonId(),person.getFirstName()+""+person.getLastName())).toList();
+        dtoList = people.stream().filter(person -> person.getDateOfBirth().isBefore(date))
+                .map(person -> new PersonDto(person.getPersonId(), person.getFirstName() + "" + person.getLastName())).toList();
         assertNotNull(dtoList);
         assertEquals(expectedSize, dtoList.size());
     }
@@ -159,8 +159,8 @@ public class StreamExercise {
         int personId = 5914;
 
         Optional<String> optional = null;
-        optional=people.stream()
-                .filter(person -> person.getPersonId()==personId).findAny()
+        optional = people.stream()
+                .filter(person -> person.getPersonId() == personId).findAny()
                 .map(person -> person.getDateOfBirth().getDayOfWeek() + " " +
                         person.getDateOfBirth().getDayOfMonth() + " " +
                         person.getDateOfBirth().getMonth().toString() + " " +
@@ -181,9 +181,7 @@ public class StreamExercise {
                 person -> Period.between(person.getDateOfBirth(), LocalDate.parse("2019-12-20")).getYears();
         double expected = 54.42;
         double averageAge = 0;
-
-        //TODO:Write code here
-        averageAge=people.stream().mapToInt(personToAge).average().orElse(0);
+        averageAge = people.stream().mapToInt(personToAge).average().orElse(0);
 
         assertTrue(averageAge > 0);
         assertEquals(expected, averageAge, .01);
@@ -197,6 +195,7 @@ public class StreamExercise {
         String[] expected = {"Ada", "Ana", "Anna", "Ava", "Aya", "Bob", "Ebbe", "Efe", "Eje", "Elle", "Hannah", "Maram", "Natan", "Otto"};
 
         String[] result = null;
+        result = people.stream().sorted().toArray(String[]::new);
 
         //TODO:Write code here
 
@@ -211,7 +210,7 @@ public class StreamExercise {
     public void task13() {
         int expectedSize = 107;
         Map<String, List<Person>> personMap = null;
-        personMap=people.stream().collect(Collectors.groupingBy(Person::getLastName));
+        personMap = people.stream().collect(Collectors.groupingBy(Person::getLastName));
         assertNotNull(personMap);
         assertEquals(expectedSize, personMap.size());
     }
@@ -222,8 +221,12 @@ public class StreamExercise {
     @Test
     public void task14() {
         LocalDate[] _2020_dates = null;
+        LocalDate startDate = LocalDate.ofEpochDay(2020 - 01 - 01);
+        LocalDate endDate = LocalDate.ofEpochDay(2020 - 31 - 12);
 
         //TODO:Write code here
+        _2020_dates = people.stream().iterate().toArray(LocalDate[]::new);
+
         assertNotNull(_2020_dates);
         assertEquals(366, _2020_dates.length);
         assertEquals(LocalDate.parse("2020-01-01"), _2020_dates[0]);
