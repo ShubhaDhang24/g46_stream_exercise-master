@@ -7,6 +7,7 @@ import se.lexicon.vxo.model.PersonDto;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.Year;
 import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
@@ -182,6 +183,7 @@ public class StreamExercise {
         double averageAge = 0;
 
         //TODO:Write code here
+        averageAge=people.stream().mapToInt(personToAge).average().orElse(0);
 
         assertTrue(averageAge > 0);
         assertEquals(expected, averageAge, .01);
@@ -210,9 +212,6 @@ public class StreamExercise {
         int expectedSize = 107;
         Map<String, List<Person>> personMap = null;
         personMap=people.stream().collect(Collectors.groupingBy(Person::getLastName));
-
-
-
         assertNotNull(personMap);
         assertEquals(expectedSize, personMap.size());
     }
@@ -225,8 +224,6 @@ public class StreamExercise {
         LocalDate[] _2020_dates = null;
 
         //TODO:Write code here
-
-
         assertNotNull(_2020_dates);
         assertEquals(366, _2020_dates.length);
         assertEquals(LocalDate.parse("2020-01-01"), _2020_dates[0]);
