@@ -100,8 +100,6 @@ public class StreamExercise {
         int expectedLength = 3;
 
         Person[] result = null;
-
-        //TODO:Write code here
         result=people.stream()
                         .filter(person -> person.getFirstName().equals("Erik"))
                 .toArray(Person[]::new);
@@ -116,10 +114,8 @@ public class StreamExercise {
     @Test
     public void task7(){
         Person expected = new Person(5436, "Tea", "Håkansson", LocalDate.parse("1968-01-25"), Gender.FEMALE);
-
         Optional<Person> optional = null;
-
-        //TODO:Write code here
+        optional=people.stream().filter(person -> person.getPersonId()==5436).findAny();
 
         assertNotNull(optional);
         assertTrue(optional.isPresent());
