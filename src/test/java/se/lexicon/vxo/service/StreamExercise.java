@@ -144,9 +144,6 @@ public class StreamExercise {
         List<PersonDto> dtoList = null;
         dtoList=people.stream().filter(person -> person.getDateOfBirth().isBefore(date))
                 .map(person -> new PersonDto(person.getPersonId(),person.getFirstName()+""+person.getLastName())).toList();
-
-        //TODO:Write code here
-
         assertNotNull(dtoList);
         assertEquals(expectedSize, dtoList.size());
     }
@@ -161,6 +158,13 @@ public class StreamExercise {
         int personId = 5914;
 
         Optional<String> optional = null;
+        optional=people.stream()
+                .filter(person -> person.getPersonId()==personId).findAny()
+                .map(person -> person.getDateOfBirth().getDayOfWeek() + " " +
+                        person.getDateOfBirth().getDayOfMonth() + " " +
+                        person.getDateOfBirth().getMonth().toString() + " " +
+                        person.getDateOfBirth().getYear());
+
 
         //TODO:Write code here
 
