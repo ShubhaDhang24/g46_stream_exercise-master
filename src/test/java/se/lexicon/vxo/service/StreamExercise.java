@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -82,8 +83,9 @@ public class StreamExercise {
     public void task5(){
         int expectedSize = 8882;
         Set<LocalDate> dates = null;
-
-        //TODO:Write code here
+        dates=people.stream()
+                .map(person -> person.getDateOfBirth())
+                .collect(Collectors.toCollection(TreeSet::new));
 
         assertNotNull(dates);
         assertTrue(dates instanceof TreeSet);
