@@ -102,6 +102,9 @@ public class StreamExercise {
         Person[] result = null;
 
         //TODO:Write code here
+        result=people.stream()
+                        .filter(person -> person.getFirstName().equals("Erik"))
+                .toArray(Person[]::new);
 
         assertNotNull(result);
         assertEquals(expectedLength, result.length);
