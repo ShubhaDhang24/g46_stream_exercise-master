@@ -142,6 +142,8 @@ public class StreamExercise {
         LocalDate date = LocalDate.parse("1920-01-01");
 
         List<PersonDto> dtoList = null;
+        dtoList=people.stream().filter(person -> person.getDateOfBirth().isBefore(date))
+                .map(person -> new PersonDto(person.getPersonId(),person.getFirstName()+""+person.getLastName())).toList();
 
         //TODO:Write code here
 
