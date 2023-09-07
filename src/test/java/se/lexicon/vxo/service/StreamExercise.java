@@ -40,9 +40,8 @@ public class StreamExercise {
     @Test
     public void task2(){
         long amount = 0;
-
-        //TODO:Write code here
-
+        amount=people.stream()
+                        .count();
         assertEquals(10000, amount);
     }
 
